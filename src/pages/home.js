@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Usertable from "../components/usertable";
 
-const ROOT_URL = `https://randomuser.me/api/?seed=divyesh&results=100`;
+const ROOT_URL = `https://randomuser.me/api/?seed=divyesh&results=50`;
 
 export default function Home(props) {
   const [apiData, setApiData] = useState("");
@@ -17,8 +17,10 @@ export default function Home(props) {
 
   return (
     <div className="container my-5">
-      <h1> Welcome to GetCraft Address Book </h1>
-      {console.log(apiData[0])}
+      <h1>
+        {" "}
+        Welcome to <span className="text-secondary">GetCraft</span> Address Book{" "}
+      </h1>
       <Usertable apiData={apiData} />
     </div>
   );
