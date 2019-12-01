@@ -12,12 +12,27 @@ export default function Modal(props) {
           <div className="row">
             <div
               id="modal"
-              className="col-8 mx-auto col-md-6 col-lg-4 text-center text-capitalize p-5"
+              className="col-10 mx-auto col-md-6 col-lg-6 text-center text-capitalize p-5"
             >
-              <h5>item added to the cart</h5>
-              <img src="" className="img-fluid" alt="product"></img>
-              <h5>title</h5>
-              <h5 className="text-muted"> price: ₹ price</h5>
+              <img
+                src={selectedItem.picture.thumbnail}
+                className="img-fluid"
+                alt="product"
+              ></img>
+              <h4>
+                {selectedItem.name.title} {selectedItem.name.first}{" "}
+                {selectedItem.name.last}
+              </h4>
+              <p>Cell number : {selectedItem.cell}</p>
+              <p>Phone number : {selectedItem.phone}</p>
+              <p>Email : {selectedItem.email}</p>
+              <p>Age : {selectedItem.dob.age}</p>
+              <p>Gender: {selectedItem.gender}</p>
+              <p>
+                Address : {selectedItem.location.street.number},
+                {selectedItem.location.street.name},{selectedItem.location.city}
+                , {selectedItem.location.state},{selectedItem.location.country}
+              </p>
               <Link to="/">
                 <ButtonContainer onClick={() => setSelected(!selected)}>
                   close
