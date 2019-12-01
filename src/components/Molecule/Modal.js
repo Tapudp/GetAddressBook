@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ButtonContainer } from "./ButtonContainer";
+import { ButtonContainer } from "../Atom/ButtonContainer";
 
 export default function Modal(props) {
   const { selected, setSelected, selectedItem } = props;
@@ -20,17 +20,7 @@ export default function Modal(props) {
               <h5 className="text-muted"> price: ₹ price</h5>
               <Link to="/">
                 <ButtonContainer onClick={() => setSelected(!selected)}>
-                  store
-                </ButtonContainer>
-              </Link>
-              <Link to="/cart">
-                <ButtonContainer
-                  cart
-                  onClick={() =>
-                    console.log("closing the modal has been called")
-                  }
-                >
-                  go to cart
+                  close
                 </ButtonContainer>
               </Link>
             </div>

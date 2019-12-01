@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Usertable from "../components/usertable";
+import Usertable from "../components/Molecule/usertable";
 
 const ROOT_URL = `https://randomuser.me/api/?seed=divyesh&results=50`;
 

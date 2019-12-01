@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import Item from "../Atom/Item";
 import Modal from "./Modal";
 
 function Usertable(props) {
   const { apiData } = props;
   const [selected, setSelected] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState(null);
 
   return (
     <div className="card py-5">
@@ -21,26 +22,14 @@ function Usertable(props) {
             </thead>
             <tbody>
               {apiData.map((item, index) => (
-                <tr
+                <Item
                   key={index}
-                  onClick={() => {
-                    setSelected(!selected);
-                    setSelectedItem({ item });
-                    console.log(
-                      `selectedItem is here ${JSON.stringify(selectedItem)}`
-                    );
-                  }}
-                >
-                  <td>{index + 1}</td>
-                  <td>
-                    {item.name.title}
-                    <b>
-                      {item.name.first} {item.name.last}
-                    </b>
-                  </td>
-                  <td>{item.gender}</td>
-                  <td>{item.dob.age}</td>
-                </tr>
+                  setSelected={setSelected}
+                  setSelectedItem={setSelectedItem}
+                  selected={selected}
+                  index={index}
+                  data={item}
+                />
               ))}
             </tbody>
             {selected && selectedItem && (
@@ -53,11 +42,7 @@ function Usertable(props) {
           </>
         ) : (
           <div className="d-flex justify-content-center align-items-center">
-            <div
-              scope="row"
-              className="spinner-border text-success"
-              role="status"
-            >
+            <div className="spinner-border text-success" role="status">
               <div className="sr-only">Loading...</div>
             </div>
           </div>
