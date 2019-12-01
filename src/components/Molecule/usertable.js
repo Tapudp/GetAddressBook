@@ -8,8 +8,8 @@ function Usertable(props) {
   const [selectedItem, setSelectedItem] = useState(null);
 
   return (
-    <div className="card py-5">
-      <table className="table">
+    <div className="tableContainer">
+      <table className="table myfonts">
         {apiData ? (
           <>
             <thead>
