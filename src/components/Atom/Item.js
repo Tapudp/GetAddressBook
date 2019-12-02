@@ -11,7 +11,7 @@ function Item(props) {
     >
       <td>{index + 1}</td>
       <td>
-        <img src={data.picture.thumbnail} />
+        <img src={data.picture.thumbnail} alt="profilethumbnail" />
       </td>
       <td>
         {data.name.title}{" "}

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { ButtonContainer } from "../Atom/ButtonContainer";
 import Item from "../Atom/Item";
 import Loadspinner from "../Atom/Loadspinner";
+import Search from "../Atom/Search";
 import { TableContainer } from "../Atom/TableContainer";
 import Modal from "./Modal";
-import Search from "./Search";
 
 const ROOT_URL = `https://randomuser.me/api/?seed=divyesh`;
 
@@ -30,6 +30,7 @@ function Usertable(props) {
         console.log(`this is api data ${JSON.stringify(apiData, null, 2)}`)
       )
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [start]);
 
   useEffect(() => {

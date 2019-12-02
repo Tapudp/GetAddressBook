@@ -3,9 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { ButtonContainer } from "./components/Atom/ButtonContainer";
-import CustomFooter from "./components/Atom/footer";
-import Default from "./pages/default";
-import Home from "./pages/home";
+import Default from "./pages/Default";
+import Home from "./pages/Home";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -54,7 +53,6 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route component={Default} />
           </Switch>
-          <CustomFooter />
         </div>
       </>
     </ThemeProvider>

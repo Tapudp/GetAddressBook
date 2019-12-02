@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TableContainer = styled.div`
   overflow: auto;
   height: 65vh;
-  padding-bottom: 1rem;
+  padding-bottom: 5rem;
   text-align: center;
   ::-webkit-scrollbar {
     width: 5px;

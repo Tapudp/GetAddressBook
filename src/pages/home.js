@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Usertable from "../components/Molecule/usertable";
+import Usertable from "../components/Molecule/Usertable";
 
 export default function Home(props) {
   return (
