@@ -5,7 +5,7 @@ import Usertable from "../components/Molecule/usertable";
 export default function Home(props) {
   return (
     <div className="container my-5">
-      <h1>
+      <h1 className="text-center">
         Welcome to{" "}
         <span className="text-secondary">
           <Link to="/">GetCraft</Link>

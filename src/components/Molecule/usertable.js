@@ -10,12 +10,13 @@ import Search from "./Search";
 const ROOT_URL = `https://randomuser.me/api/?seed=divyesh`;
 
 function Usertable(props) {
-  const [apiData, setApiData] = useState("");
+  const [apiData, setApiData] = useState([]);
   const [start, setStart] = useState(1);
   const [selected, setSelected] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [searching, setSearching] = useState(false);
+  const [searchString, setSearchString] = useState("");
+  const [cache, setCache] = React.useState([]);
 
   useEffect(() => {
     const APIURL = `${ROOT_URL}&results=50&page=${start}`;
@@ -23,7 +24,7 @@ function Usertable(props) {
     axios
       .get(APIURL)
       .then(fetchedData => {
-        setApiData([...apiData, ...fetchedData.data.results]);
+        setApiData(prevState => [...prevState, ...fetchedData.data.results]);
       })
       .then(() =>
         console.log(`this is api data ${JSON.stringify(apiData, null, 2)}`)
@@ -31,9 +32,21 @@ function Usertable(props) {
       .finally(() => setLoading(false));
   }, [start]);
 
+  useEffect(() => {
+    setCache(filterData(apiData, searchString));
+  }, [apiData, searchString]);
+
+  const filterData = (dataArray, someString) => {
+    return dataArray.filter(
+      item => item.name.first.toLowerCase() === someString.toLowerCase()
+    );
+  };
+
+  const onSearchChange = event => setSearchString(event.target.value);
+
   return (
     <>
-      <Search apiData={apiData} setSearching={setSearching} />
+      <Search onSearchChange={onSearchChange} />
       <TableContainer className="tableContainer">
         <table className="table mb-1 myfonts text-left">
           {apiData ? (
@@ -48,20 +61,16 @@ function Usertable(props) {
                 </tr>
               </thead>
               <tbody>
-                {searching === false ? (
-                  apiData.map((item, index) => (
-                    <Item
-                      key={index}
-                      setSelected={setSelected}
-                      setSelectedItem={setSelectedItem}
-                      selected={selected}
-                      index={index}
-                      data={item}
-                    />
-                  ))
-                ) : (
-                  <div>here you will see the results</div>
-                )}
+                {(cache.length ? cache : apiData).map((item, index) => (
+                  <Item
+                    key={index}
+                    setSelected={setSelected}
+                    setSelectedItem={setSelectedItem}
+                    selected={selected}
+                    index={index}
+                    data={item}
+                  />
+                ))}
               </tbody>
               {selected && selectedItem && (
                 <Modal
@@ -76,14 +85,15 @@ function Usertable(props) {
           )}
           {loading ? <Loadspinner /> : null}
         </table>
-        <ButtonContainer
-          style={{ zIndex: -1 }}
-          onClick={() => {
-            setStart(start + 1);
-          }}
-        >
-          Load more Contacts
-        </ButtonContainer>
+        {!cache.length && (
+          <ButtonContainer
+            onClick={() => {
+              setStart(start + 1);
+            }}
+          >
+            Load more Contacts
+          </ButtonContainer>
+        )}
       </TableContainer>
     </>
   );
