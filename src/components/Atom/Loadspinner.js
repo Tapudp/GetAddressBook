@@ -2,9 +2,12 @@ import React from "react";
 
 function Loadspinner() {
   return (
-    <div className="d-flex justify-content-center align-items-center">
-      <div className="spinner-border text-success" role="status">
-        <div className="sr-only">Loading...</div>
+    <div className="text-center">
+      <div
+        className="float-center text-center spinner-border text-success"
+        role="status"
+      >
+        <div className="sr-only float-center">Loading...</div>
       </div>
     </div>
   );
