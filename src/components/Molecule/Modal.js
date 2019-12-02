@@ -12,27 +12,65 @@ export default function Modal(props) {
           <div className="row">
             <div
               id="modal"
-              className="col-10 mx-auto col-md-6 col-lg-6 text-center text-capitalize p-5"
+              className="col-12 col-xs-10 col mx-auto col-md-6 col-lg-6 text-center text-capitalize p-5"
+              style={{ position: "relative" }}
             >
-              <img
-                src={selectedItem.picture.thumbnail}
-                className="img-fluid"
-                alt="product"
-              ></img>
-              <h4>
-                {selectedItem.name.title} {selectedItem.name.first}{" "}
-                {selectedItem.name.last}
-              </h4>
-              <p>Cell number : {selectedItem.cell}</p>
-              <p>Phone number : {selectedItem.phone}</p>
-              <p>Email : {selectedItem.email}</p>
-              <p>Age : {selectedItem.dob.age}</p>
-              <p>Gender: {selectedItem.gender}</p>
-              <p>
-                Address : {selectedItem.location.street.number},
-                {selectedItem.location.street.name},{selectedItem.location.city}
-                , {selectedItem.location.state},{selectedItem.location.country}
-              </p>
+              <div
+                className="row mb-10"
+                style={{ position: "absolute", top: -15 }}
+              >
+                <img
+                  src={selectedItem.picture.large}
+                  className="img-fluid rounded-circle"
+                  alt="product"
+                ></img>
+                <h2 className="col mt-4">
+                  {selectedItem.name.title} {selectedItem.name.first}{" "}
+                  {selectedItem.name.last}
+                </h2>
+              </div>
+
+              <div className="mt-5 pt-4 row text-left">
+                <p className="col">Cell number:</p>
+                <span className="col">
+                  <b>{selectedItem.cell}</b>
+                </span>
+              </div>
+              <div className="row text-left">
+                <p className="col">Phone number:</p>
+                <span className="col">
+                  <b>{selectedItem.phone}</b>
+                </span>
+              </div>
+              <div className="row text-left">
+                <p className="col">Email:</p>
+                <span className="col">
+                  <b>{selectedItem.email}</b>
+                </span>
+              </div>
+              <div className="row text-left">
+                <p className="col">Age :</p>
+                <span className="col">
+                  <b>{selectedItem.dob.age}</b>
+                </span>
+              </div>
+              <div className="row text-left">
+                <p className="col">Gender :</p>
+                <span className="col">
+                  <b>{selectedItem.gender}</b>
+                </span>
+              </div>
+              <div className="row text-left mb-5">
+                <p className="col">Address :</p>
+                <span className="col">
+                  <b>
+                    {selectedItem.location.street.number},{" "}
+                    {selectedItem.location.street.name},{" "}
+                    {selectedItem.location.city}, {selectedItem.location.state},{" "}
+                    {selectedItem.location.country}
+                  </b>
+                </span>
+              </div>
               <Link to="/">
                 <ButtonContainer onClick={() => setSelected(!selected)}>
                   close
