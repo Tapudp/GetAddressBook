@@ -8,6 +8,7 @@ import Home from "./pages/home";
 
 const GlobalStyle = createGlobalStyle`
   body{
+    overflow: hidden;
     background-color: ${props =>
       props.theme.mode === "dark" ? "#4c4c4c" : "#fff"};
     color: ${props => (props.theme.mode === "dark" ? "#EEE" : "#000")};
@@ -15,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
       background-color: ${props =>
         props.theme.mode === "dark" ? "#4c4c4c" : "#fff"};
       color: ${props => (props.theme.mode === "dark" ? "#EEE" : "#000")};
+      overflow-y: auto;
     }
     .myfonts{
       color: ${props => (props.theme.mode === "dark" ? "#EEE" : "#000")};

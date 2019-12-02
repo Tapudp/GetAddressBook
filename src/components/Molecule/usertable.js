@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Item from "../Atom/Item";
+import Loadspinner from "../Atom/Loadspinner";
 import Modal from "./Modal";
 
+const ROOT_URL = `https://randomuser.me/api/?seed=divyesh`;
+
 function Usertable(props) {
-  const { apiData } = props;
+  const [apiData, setApiData] = useState("");
+  const [start, setStart] = useState(1);
   const [selected, setSelected] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  function fetchMoreContent() {
+    setStart(start + 1);
+    console.log("fetchMoreContent has been called with value ", start);
+  }
+
+  useEffect(() => {
+    const APIURL = `${ROOT_URL}&results=50&page=${start}`;
+    axios.get(APIURL).then(fetchedData => {
+      console.log(fetchedData);
+      setApiData(fetchedData.data.results);
+    });
+  }, []);
+
   return (
     <div className="tableContainer">
-      <table className="table myfonts">
+      {/* <InfiniteScroll
+        dataLength={apiData.length}
+        next={fetchMoreContent}
+        hasMore={true}
+        loader={<Loadspinner />}
+      > */}
+      <table className="table myfonts mh-50">
         {apiData ? (
           <>
             <thead>
@@ -41,13 +65,10 @@ function Usertable(props) {
             )}
           </>
         ) : (
-          <div className="d-flex justify-content-center align-items-center">
-            <div className="spinner-border text-success" role="status">
-              <div className="sr-only">Loading...</div>
-            </div>
-          </div>
+          <Loadspinner />
         )}
       </table>
+      {/* </InfiniteScroll> */}
     </div>
   );
 }
